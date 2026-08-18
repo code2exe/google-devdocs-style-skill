@@ -50,13 +50,13 @@ knows the right directory for each:
 
 ```bash
 # Project scope (default) — travels with the repo
-npx skills@latest add YOUR_USERNAME/google-devdocs-style-skill
+npx skills@latest add code2exe/google-devdocs-style-skill
 
 # Pick specific agents
-npx skills@latest add YOUR_USERNAME/google-devdocs-style-skill -a claude-code -a cursor
+npx skills@latest add code2exe/google-devdocs-style-skill -a claude-code -a cursor
 
 # Global — available across all your projects
-npx skills@latest add YOUR_USERNAME/google-devdocs-style-skill -g
+npx skills@latest add code2exe/google-devdocs-style-skill -g
 ```
 
 Housekeeping: `npx skills list`, `npx skills check`, `npx skills update`,
@@ -79,7 +79,7 @@ Clone, then copy `skills/google-devdocs-style` into your agent's skills director
 | Antigravity | copy into its own customizations folder; it doesn't read the shared agents folder |
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/google-devdocs-style-skill.git
+git clone https://github.com/code2exe/google-devdocs-style-skill.git
 mkdir -p ~/.claude/skills
 cp -r google-devdocs-style-skill/skills/google-devdocs-style ~/.claude/skills/
 ```
