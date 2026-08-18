@@ -5,6 +5,12 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+- Cross-agent install instructions using the open skills CLI (`npx skills add`),
+  with per-agent directories for Claude Code, Codex, and Cursor.
+- A portability note explaining that hosts which read only `SKILL.md` lose the
+  reference files, and how to test whether yours does.
+
 ## [0.1.0] - 2026-08-18
 
 Initial release.

@@ -1,7 +1,7 @@
 # google-devdocs-style
 
-An [Agent Skill](https://code.claude.com/docs/en/skills) that teaches Claude to write,
-edit, and review developer documentation in the style of the
+An [Agent Skill](https://code.claude.com/docs/en/skills) that teaches a coding agent to
+write, edit, and review developer documentation in the style of the
 [Google developer documentation style guide](https://developers.google.com/style).
 
 > **Unofficial.** This project is not affiliated with, endorsed by, or connected to
@@ -10,13 +10,13 @@ edit, and review developer documentation in the style of the
 
 ## What it does
 
-Ask Claude for a README, a runbook, an API reference, or a migration guide and you
+Ask an agent for a README, a runbook, an API reference, or a migration guide and you
 generally get competent prose with LLM-default habits baked in: title-case headings,
 "simply run the following command," passive constructions, `currently` sprinkled
 through, "click here" links, and steps that tell you *what* before *where*.
 
-This skill replaces those defaults with a specific, defensible house style, and gives
-Claude a review mode that grades findings by severity instead of dumping a flat list
+This skill replaces those defaults with a specific, defensible house style, and adds a
+review mode that grades findings by severity instead of dumping a flat list
 of nitpicks.
 
 It covers voice and tone, second person, active voice, present tense, sentence-case
@@ -39,9 +39,44 @@ audience.
 
 ## Install
 
-### Claude Code
+Nothing in this skill is Claude-specific: it's plain Markdown with `name` and
+`description` frontmatter, no scripts, and no tool dependencies. Any agent that reads
+the `SKILL.md` format can use it.
 
-Personal (available in every project):
+### Any agent (recommended)
+
+The open [skills CLI](https://skills.sh) installs into whichever agents you target and
+knows the right directory for each:
+
+```bash
+# Project scope (default) — travels with the repo
+npx skills@latest add YOUR_USERNAME/google-devdocs-style-skill
+
+# Pick specific agents
+npx skills@latest add YOUR_USERNAME/google-devdocs-style-skill -a claude-code -a cursor
+
+# Global — available across all your projects
+npx skills@latest add YOUR_USERNAME/google-devdocs-style-skill -g
+```
+
+Housekeeping: `npx skills list`, `npx skills check`, `npx skills update`,
+`npx skills remove google-devdocs-style`.
+
+Pin `@latest` — older CLI versions don't create the Claude Code link, so the skill
+installs but never appears. Flag names have shifted between releases; if `-a` is
+rejected, run `npx skills add --help`.
+
+### Manual install
+
+Clone, then copy `skills/google-devdocs-style` into your agent's skills directory:
+
+| Agent | Directory |
+| --- | --- |
+| Claude Code | `~/.claude/skills/` (personal) or `.claude/skills/` (project) |
+| Codex CLI | `~/.codex/skills/`; also reads `.agents/skills/` directly |
+| Cursor | `.cursor/skills/` |
+| Gemini CLI, Copilot, OpenCode, Windsurf | supported by the CLI — let it place the files |
+| Antigravity | copy into its own customizations folder; it doesn't read the shared agents folder |
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/google-devdocs-style-skill.git
@@ -49,30 +84,33 @@ mkdir -p ~/.claude/skills
 cp -r google-devdocs-style-skill/skills/google-devdocs-style ~/.claude/skills/
 ```
 
-Project scope (versioned with your repo, so your whole team gets it on clone):
+Start a new session afterward. In Claude Code, `/skills` confirms it loaded. Uninstall
+by deleting the folder; disable temporarily by renaming it with a leading underscore.
 
-```bash
-mkdir -p .claude/skills
-cp -r /path/to/google-devdocs-style-skill/skills/google-devdocs-style .claude/skills/
-```
-
-Start a new session, then run `/skills` to confirm it loaded. Project scope is the
-better default if you're not yet sure you want the skill firing everywhere.
-
-Uninstall by deleting the folder. Disable temporarily by renaming it with a leading
-underscore.
+Project scope is the better default if you're not yet sure you want the skill firing
+everywhere — it's versioned and reviewable alongside the code it describes.
 
 ### claude.ai and Claude Desktop
 
-Package the skill folder as a `.zip`, rename it to `.skill`, and upload it through the
-skills interface. Or clone the repo and drag `skills/google-devdocs-style` in, if your
-client supports folder upload.
+Zip the `skills/google-devdocs-style` folder, rename it to `.skill`, and upload it
+through the skills interface.
 
-### Other agents
+### A portability caveat worth knowing
 
-The `SKILL.md` format is portable. Copy `skills/google-devdocs-style` into your
-agent's skills directory — `.cursor/skills/` for Cursor, and the equivalent elsewhere.
-Nothing in the skill depends on Claude-specific tooling.
+This skill is built around progressive disclosure: `SKILL.md` is a ~210-line summary
+that points to reference files the agent loads **only when it needs them**. That keeps
+the context cost low for a skill designed to trigger on most documentation work.
+
+Claude Code and Codex both load bundled files on demand, so they get the full ~1,400
+lines of guidance as needed. Some hosts read only `SKILL.md` and ignore the rest of the
+folder. On those, the skill still works but runs shallow — you get the core rules and
+lose the word list, the review checklist, and the examples, with no error explaining
+why.
+
+If your agent behaves that way, ask it directly: *"Read
+references/word-list.md and tell me the preferred form of 'front end'."* If it can't,
+it isn't loading the references, and you'll want to paste the relevant file in
+manually for detailed work.
 
 ## Structure
 
