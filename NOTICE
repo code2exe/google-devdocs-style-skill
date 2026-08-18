@@ -1,0 +1,70 @@
+NOTICE
+======
+
+This repository contains an Agent Skill that is an ADAPTATION of the
+Google developer documentation style guide.
+
+Original work
+-------------
+Title:    Google developer documentation style guide
+Source:   https://developers.google.com/style
+Author:   Google LLC
+License:  Creative Commons Attribution 4.0 International (CC BY 4.0)
+          https://creativecommons.org/licenses/by/4.0/
+
+This adaptation
+---------------
+Licensed under CC BY 4.0, the same license as the original.
+
+Changes made to the original work
+---------------------------------
+As required by section 3(a)(1)(B) of CC BY 4.0, the following modifications
+were made:
+
+1. Content was SELECTED. The source guide has roughly fifty pages; this
+   adaptation covers a subset, prioritizing voice and tone, language and
+   grammar, punctuation, formatting, procedures, linking, code conventions,
+   and the word list.
+
+2. Content was REORGANIZED. The source is arranged as an alphabetical and
+   topical reference for human lookup. This adaptation is arranged for machine
+   consumption under progressive disclosure: a summary entry point (SKILL.md)
+   with topic-scoped reference files loaded on demand.
+
+3. Content was REWRITTEN. Guidance is paraphrased and condensed rather than
+   reproduced. Wording, examples, and explanations differ from the original.
+
+4. Content was ADDED. The following are original to this repository and are
+   NOT part of Google developer documentation style:
+   - The document-type selection table (quickstart / how-to / reference /
+     concept / runbook) in SKILL.md
+   - The "ten rules that matter most" ordering and framing
+   - The eight-pass review checklist and its severity grading
+     (Blocking / Should fix / Style / Optional)
+   - All worked examples in examples/
+   - All rationale text explaining why a rule exists
+
+5. Content was OMITTED. Google-product-specific guidance (Google Cloud,
+   Android, Google Workspace annotations and product naming rules) is largely
+   omitted as inapplicable outside Google documentation, except where it
+   illustrates a general principle.
+
+Trademarks
+----------
+Google, Google Cloud, Android, and Google Workspace are trademarks of
+Google LLC. This project is NOT affiliated with, endorsed by, sponsored by, or
+in any way officially connected with Google LLC. The name "google-devdocs-style"
+is used descriptively to identify which style guide the skill implements
+(nominative use). No Google logos, wordmarks, or brand assets are included.
+
+Code samples
+------------
+Code samples in the source guide are licensed under the Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0). This adaptation does not
+reproduce code samples from the source; illustrative snippets here are original.
+
+Accuracy
+--------
+See ACCURACY.md for which guidance has been verified against the source and
+which has not. The canonical style guide is updated frequently; where this
+adaptation and the source disagree, the source is correct.
